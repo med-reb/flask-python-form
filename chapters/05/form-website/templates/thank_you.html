@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Merci</title>
+</head>
+<body>
+    <h1>Merci de nous avoir contacté !</h1>
+    <p>Voici un résumé de vos informations :</p>
+    <ul>
+        <li>Prénom : {{ data['firstname'] }}</li>
+        <li>Nom : {{ data['lastname'] }}</li>
+        <li>Email : {{ data['email'] }}</li>
+        <li>Pays : {{ data['country'] }}</li>
+        <li>Message : {{ data['message'] }}</li>
+        <li>Genre : {{ 'Homme' if data['gender'] == 'H' else 'Femme' }}</li>
+        <li>Sujet : {{ ', '.join(data['subjects']) }}</li>
+    </ul>
+</body>
+</html>

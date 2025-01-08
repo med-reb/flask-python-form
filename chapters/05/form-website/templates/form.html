@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de Contact</title>
+</head>
+<body>
+    <h1>Contactez-nous</h1>
+    <form method="POST" action="/submit">
+        <label for="firstname">Prénom :</label>
+        <input type="text" id="firstname" name="firstname" value="{{ data.get('firstname', '') }}" required>
+        <span>{{ errors.get('firstname', '') }}</span><br>
+
+        <label for="lastname">Nom :</label>
+        <input type="text" id="lastname" name="lastname" value="{{ data.get('lastname', '') }}" required>
+        <span>{{ errors.get('lastname', '') }}</span><br>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" value="{{ data.get('email', '') }}" required>
+        <span>{{ errors.get('email', '') }}</span><br>
+
+        <label for="country">Pays :</label>
+        <select id="country" name="country" required>
+            <option value="France" {% if data.get('country') == 'France' %}selected{% endif %}>France</option>
+            <option value="Belgique" {% if data.get('country') == 'Belgique' %}selected{% endif %}>Belgique</option>
+            <option value="Canada" {% if data.get('country') == 'Canada' %}selected{% endif %}>Canada</option>
+        </select><br>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required>{{ data.get('message', '') }}</textarea>
+        <span>{{ errors.get('message', '') }}</span><br>
+
+        <label>Genre :</label>
+        <input type="radio" name="gender" value="H" {% if data.get('gender') == 'H' %}checked{% endif %}> Homme
+        <input type="radio" name="gender" value="F" {% if data.get('gender') == 'F' %}checked{% endif %}> Femme
+        <span>{{ errors.get('gender', '') }}</span><br>
+
+        <label>Sujet :</label>
+        <input type="checkbox" name="subject" value="Réparation" {% if 'Réparation' in data.get('subjects', []) %}checked{% endif %}> Réparation
+        <input type="checkbox" name="subject" value="Commande" {% if 'Commande' in data.get('subjects', []) %}checked{% endif %}> Commande
+        <input type="checkbox" name="subject" value="Autre" {% if 'Autre' in data.get('subjects', []) %}checked{% endif %}> Autre<br>
+
+        <input type="text" name="honeypot" style="display:none"><br>
+
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
